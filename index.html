@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freundesrangliste Prototyp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="stageViewport" class="stage-viewport">
+    <div id="stageBackground" class="stage-background-image home-bg" aria-hidden="true"></div>
+    <div id="hallFullscreenBlur" class="hall-fullscreen-blur" aria-hidden="true"></div>
+    <div id="introOverlay" class="intro-overlay">
+      <div id="introNotice" class="intro-notice">
+        <h3>Hinweis</h3>
+        <p>Ich habe viel Arbeit in dieses Projekt gesteckt. Das hier ist meine Open Alpha, und aktuell sind nur wenige Funktionen implementiert. Die jetzigen Funktionen sind dazu da, um die Website zu zeigen. Aktuell hat der Code <strong id="codeLineCount">0</strong> Zeilen.</p>
+        <button id="introThanksBtn" class="intro-thanks-button" type="button">Danke</button>
+      </div>
+    </div>
+    <div class="version-badge">v0.0.1</div>
+    <div id="stageRoot" class="stage-root">
+  <main id="app" class="app" aria-live="polite">
+    <section class="view home-screen is-active" data-view="home">
+      <h1 class="home-title">Private Freundesrangliste</h1>
+      <p class="home-subtitle">Ein sauberer, austauschbarer Frontend-Prototyp für Rangliste und Hall of Fame.</p>
+      <button class="big-button home-button-rangliste nav-trigger" data-target="leaderboard">Rangliste</button>
+      <button class="big-button home-button-halloffame nav-trigger" data-target="hall">Hall of Fame</button>
+    </section>
+
+    <section class="view leaderboard-screen" data-view="leaderboard">
+      <button class="icon-button leaderboard-back-button nav-trigger" data-target="home" aria-label="Zurück zur Startseite">&larr;</button>
+      <div class="leaderboard-comingsoon">
+        <span class="leaderboard-comingsoon-mark">?</span>
+        <p class="leaderboard-comingsoon-text">Coming soon</p>
+      </div>
+    </section>
+
+    <section class="view hall-screen" data-view="hall">
+      <div class="screen-shell hall-shell">
+        <button class="icon-button hall-back-button nav-trigger" data-target="home" aria-label="Zurück zur Startseite">&larr;</button>
+        <h2 class="screen-title hall-title">Hall of Fame</h2>
+        <p class="hall-description">Wähle eine Kategorie für historische Meilensteine oder aktuelle Rekorde.</p>
+        <button class="big-button hall-button-meilensteine nav-trigger" data-target="milestones">Meilensteine</button>
+        <button class="big-button hall-button-rekorde nav-trigger" data-target="records">Rekorde</button>
+      </div>
+    </section>
+
+    <section class="view milestone-screen" data-view="milestones">
+      <div class="milestone-background" aria-hidden="true"></div>
+      <img class="milestone-podium" src="./assets/podium.png" alt="" aria-hidden="true" draggable="false">
+
+      <button class="icon-button back-button milestone-back-button nav-trigger" data-target="hall" aria-label="Zurück zur Hall of Fame">&larr;</button>
+      <h2 class="screen-title milestone-screen-title">Meilensteine</h2>
+
+      <button class="carousel-arrow milestone-arrow-left" data-carousel="milestones" data-direction="-1" aria-label="Vorheriger Meilenstein">&#10094;</button>
+      <button class="carousel-arrow milestone-arrow-right" data-carousel="milestones" data-direction="1" aria-label="Nächster Meilenstein">&#10095;</button>
+
+      <img id="milestoneSignImage" class="milestone-sign" alt="Namensschild" draggable="false">
+      <div id="milestoneSignFallback" class="image-fallback milestone-sign-fallback" hidden>[NAME_SIGN_IMAGE]</div>
+
+      <h3 id="milestonePlayer" class="milestone-player-name">[PLACEHOLDER NAME]</h3>
+      <p id="milestoneDate" class="milestone-date">[PLACEHOLDER DATE]</p>
+
+      <img id="milestoneTrophyImage" class="milestone-trophy" alt="Meilenstein Trophäe" draggable="false">
+      <div id="milestoneTrophyFallback" class="image-fallback milestone-trophy-fallback" hidden>[MISSING MILESTONE TROPHY]</div>
+
+    </section>
+
+    <section class="view records-screen" data-view="records">
+      <div class="records-background" aria-hidden="true"></div>
+      <img class="records-podium" src="./assets/records-podium.png" alt="" aria-hidden="true" draggable="false">
+      <img class="records-podium-trophy records-podium-trophy-gold" src="./assets/records-trophy-gold.png" alt="Gold Trophäe" draggable="false">
+      <img class="records-podium-trophy records-podium-trophy-silver" src="./assets/records-trophy-silver.png" alt="Silber Trophäe" draggable="false">
+      <img class="records-podium-trophy records-podium-trophy-bronze" src="./assets/records-trophy-bronze.png" alt="Bronze Trophäe" draggable="false">
+      <div class="records-banner records-banner-gold">
+        <img class="records-banner-image" src="./assets/records-banner-gold.png" alt="Gold Banner" draggable="false">
+      </div>
+      <div class="records-banner records-banner-silver">
+        <img class="records-banner-image" src="./assets/records-banner-silver.png" alt="Silber Banner" draggable="false">
+      </div>
+      <div class="records-banner records-banner-bronze">
+        <img class="records-banner-image" src="./assets/records-banner-bronze.png" alt="Bronze Banner" draggable="false">
+      </div>
+      <div class="records-banner-text-layer" aria-hidden="true">
+        <svg class="records-banner-curve records-banner-curve-gold" viewBox="0 0 1000 260" preserveAspectRatio="none">
+          <defs>
+            <path id="recordsBannerPathGold" d="M 80 195 Q 500 70 920 195"></path>
+          </defs>
+          <text class="records-banner-curve-text">
+            <textPath id="recordBannerGoldName" href="#recordsBannerPathGold" startOffset="50%" text-anchor="middle">[PLACEHOLDER NAME]</textPath>
+          </text>
+        </svg>
+        <svg class="records-banner-curve records-banner-curve-silver" viewBox="0 0 1000 260" preserveAspectRatio="none">
+          <defs>
+            <path id="recordsBannerPathSilver" d="M 90 200 Q 500 85 910 200"></path>
+          </defs>
+          <text class="records-banner-curve-text">
+            <textPath id="recordBannerSilverName" href="#recordsBannerPathSilver" startOffset="50%" text-anchor="middle">[PLACEHOLDER NAME]</textPath>
+          </text>
+        </svg>
+        <svg class="records-banner-curve records-banner-curve-bronze" viewBox="0 0 1000 260" preserveAspectRatio="none">
+          <defs>
+            <path id="recordsBannerPathBronze" d="M 90 200 Q 500 85 910 200"></path>
+          </defs>
+          <text class="records-banner-curve-text">
+            <textPath id="recordBannerBronzeName" href="#recordsBannerPathBronze" startOffset="50%" text-anchor="middle">[PLACEHOLDER NAME]</textPath>
+          </text>
+        </svg>
+      </div>
+
+      <button class="icon-button back-button records-back-button nav-trigger" data-target="hall" aria-label="Zurück zur Hall of Fame">&larr;</button>
+      <h2 id="recordScreenTitle" class="screen-title records-screen-title">Rekorde - Meiste Trophäen</h2>
+
+      <button class="carousel-arrow records-arrow-left" data-carousel="records" data-direction="-1" aria-label="Vorheriger Rekord">&#10094;</button>
+      <button class="carousel-arrow records-arrow-right" data-carousel="records" data-direction="1" aria-label="Nächster Rekord">&#10095;</button>
+
+    </section>
+  </main>
+
+  <footer class="app-note">
+    API: [PLACEHOLDER API KEY] | Spielertag: [PLACEHOLDER PLAYER TAG] | Datenquelle: [PLACEHOLDER DATA SOURCE]
+  </footer>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
